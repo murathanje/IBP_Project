@@ -19,7 +19,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="kayitFirst" class="form-control" />
+                      <input name="kayitFirst" type="text" id="kayitFirst" class="form-control" />
                       <label class="form-label" for="form3Example1c">First Name</label>
                     </div>
                   </div>
@@ -28,7 +28,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="kayitLast" class="form-control" />
+                      <input name="kayitLast" type="text" id="kayitLast" class="form-control" />
                       <label class="form-label" for="form3Example1c">Last Name</label>
                     </div>
                   </div>
@@ -36,7 +36,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="kayitEmail" class="form-control" />
+                      <input name="kayitEmail" type="email" id="kayitEmail" class="form-control" />
                       <label class="form-label" for="form3Example3c">Your Email</label>
                     </div>
                   </div>
@@ -44,7 +44,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="kayitPass1" class="form-control"/>
+                      <input name="kayitPass" type="password" id="kayitPass1" class="form-control"/>
                       <label class="form-label" for="form3Example4c">Password</label>
                     </div>
                   </div>
