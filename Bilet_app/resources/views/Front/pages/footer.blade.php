@@ -1,15 +1,13 @@
-      <section class="py-0 overflow-hidden">
+      <section class="py-0">
 
         <div class="container">
           <div class="row">
             <div class="col-6 col-sm-4 col-lg-6">
               <div class="py-7"><img class="d-inline-block" src="assets/img/gallery/logo.png" width="50" alt="logo" /><span class="fw-bold fs-4 text-primary ms-2">Götür</span>
                 <ul class="list-unstyled mt-4">
-                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="#!">News</a></li>
-                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="#!">Terms &amp; Conditions</a></li>
-                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="#!">Privacy</a></li>
-                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="#!">About Us</a></li>
-                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="#!">FAQs</a></li>
+                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="{{ route('terms') }}">Terms &amp; Conditions</a></li>
+                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="{{ route('privacy') }}">Privacy</a></li>
+                  <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="{{ route('about') }}">About Us</a></li>
                 </ul>
               </div>
             </div>
@@ -47,6 +45,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="{{ asset('vendors') }}/fontawesome/all.min.js"></script>
     <script src="{{ asset('js') }}/theme.js"></script>
+    <script src="{{ asset('js') }}/checkForm.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   </body>

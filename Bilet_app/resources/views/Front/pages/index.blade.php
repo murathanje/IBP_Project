@@ -1,4 +1,7 @@
 @include('front.pages.header')
 @yield('giris')
+@yield('kayit')
+@yield('terms')
 @yield('content')
+@yield('account')
 @include('front.pages.footer')

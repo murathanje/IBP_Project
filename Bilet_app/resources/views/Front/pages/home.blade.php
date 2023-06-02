@@ -1,9 +1,9 @@
         <!-- Page Content-->
-<!-- @extends('Front.pages.index') -->
+@extends('Front.pages.index')
 @section('title','Anasayfa')
 @section('content')
                 <!-- Page Features-->
-      <section class="mt-7 py-0">
+      <section class="mt-6 py-0">
         <div class="bg-holder w-50 bg-right d-none d-lg-block" style="background-image:url({{ asset('assets') }}/img/gallery/hero-section-1.png);">
         </div>
         <!--/.bg-holder-->
