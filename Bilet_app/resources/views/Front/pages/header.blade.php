@@ -34,7 +34,7 @@
       <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block bg-blur" data-navbar-on-scroll="data-navbar-on-scroll" style = "backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); /* Safari için önek */
   background-color: rgba(200, 200, 200, 0.8); /* Gri tonlarında yarı saydam bir arka plan */">
-        <div class="container"><a class="navbar-brand" href="{{ route('home') }}"><img class="d-inline-block" src="{{ asset('assets') }}/img/gallery/logo.png" width="50" alt="logo" /><span class="fw-bold text-primary ms-2">Götür</span></a>
+        <div class="container"><a class="navbar-brand" href="{{ route('home') }}"><img class="d-inline-block" src="{{ asset('assets') }}/img/gallery/logo.png" width="50" alt="logo" /><span style= "color:#000000 !important;" class="fw-bold text-primary ms-2">Götür</span></a>
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">

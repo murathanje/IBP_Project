@@ -3,7 +3,7 @@
         <div class="container">
           <div class="row">
             <div class="col-6 col-sm-4 col-lg-6">
-              <div class="py-7"><img class="d-inline-block" src="assets/img/gallery/logo.png" width="50" alt="logo" /><span class="fw-bold fs-4 text-primary ms-2">Götür</span>
+              <div class="py-7"><img class="d-inline-block" src="assets/img/gallery/logo.png" width="50" alt="logo" /><span style= "color:#000000 !important;" class="fw-bold fs-4 text-primary ms-2">Götür</span>
                 <ul class="list-unstyled mt-4">
                   <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="{{ route('terms') }}">Terms &amp; Conditions</a></li>
                   <li class="mb-2"><a class="text-800 fw-bold text-decoration-none" href="{{ route('privacy') }}">Privacy</a></li>

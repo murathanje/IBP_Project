@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +48,7 @@ Route::get('/account', function () {
 })->name('account');
 
 Route::post('/loginCheck', 'AuthController@loginCheck')->name('loginCheck');
-Route::post('/kayitCheck', 'AuthController@kayitCheck')->name('kayitCheck');
+Route::post( '/kayitCheck' ,[AuthController::class,'kayitCheck'])->name('kayitCheck');
 
 
 
