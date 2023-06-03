@@ -47,7 +47,7 @@ Route::get('/account', function () {
     return view('Front/pages/account');
 })->name('account');
 
-Route::post('/loginCheck', 'AuthController@loginCheck')->name('loginCheck');
+Route::get('/loginCheck', [UsersController::class, 'login'])->name('loginCheck');
 Route::post('/kayitCheck', [UsersController::class, 'create'])->name('kayitCheck');
 
 

@@ -16,7 +16,7 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form id="girisForm" action="{{ route('loginCheck') }}" method="POST">
+                <form id="girisForm" action="{{ route('loginCheck') }}" method="GET">
 
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <img class="d-inline-block"  width="50" src="{{ asset('assets') }}/img/gallery/logo.png" alt="logo">
@@ -26,12 +26,12 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
                   <div class="form-outline mb-4">
-                    <input type="email" id="girisEmail" class="form-control form-control-lg" />
+                    <input type="email" name="girisEmail" id="girisEmail" class="form-control form-control-lg" />
                     <label class="form-label" for="form2Example17">Email address</label>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="girisPass" class="form-control form-control-lg" />
+                    <input name="girisPass" type="password" id="girisPass" class="form-control form-control-lg" />
                     <label class="form-label" for="form2Example27">Password</label>
                   </div>
 
