@@ -3,7 +3,9 @@
 /Bilet_app/composer.json
 /Bilet_app/composer.lock
 /Bilet_app/config/
-/Bilet_app/database/
+/Bilet_app/database/factories
+/Bilet_app/database/seeders
+/Bilet_app/database/.gitignore
 /Bilet_app/gulp/
 /Bilet_app/gulpfile.js
 /Bilet_app/package-lock.json
