@@ -16,8 +16,8 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form id="girisForm" action="{{ route('loginCheck') }}" method="GET">
-
+                <form id="girisForm" action="{{ route('loginCheck') }}" method="POST">
+                  @csrf
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <img class="d-inline-block"  width="50" src="{{ asset('assets') }}/img/gallery/logo.png" alt="logo">
                     <span class="h1 fw-bold mb-0">Sign In</span>

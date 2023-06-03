@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -47,8 +48,14 @@ Route::get('/account', function () {
     return view('Front/pages/account');
 })->name('account');
 
-Route::get('/loginCheck', [UsersController::class, 'login'])->name('loginCheck');
+Route::post('/loginCheck', [UsersController::class, 'login'])->name('loginCheck');
 Route::post('/kayitCheck', [UsersController::class, 'create'])->name('kayitCheck');
 
+// Back
+Route::get('/admin/panel', function () {
+    $user = session('user');
+    $userCount = session('userCount');
 
+    return view('Back.pages.dashboard', compact('user', 'userCount'));
+})->name('admin.panel');
 

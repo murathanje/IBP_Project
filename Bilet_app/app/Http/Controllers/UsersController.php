@@ -55,8 +55,12 @@ class UsersController extends Controller
         $password = $request->input('girisPass');
         $user = DB::table('users')->where('users_email', $email)->first();
         if ($user && Hash::check($password, $user->users_password)) {
-            // kullanıcı girişi başarılı
-            return redirect('/home');
+            if($user->users_email == "admin@admin.com" && Hash::check($password, $user->users_password)){
+                $userCount = DB::table('users')->count();
+                return redirect('/admin/panel')->with(['user' => $user, 'userCount' => $userCount]);
+            }else{
+                return redirect('/home');
+            }
         } else {
             // kullanıcı girişi başarısız
             return "olmadı";
