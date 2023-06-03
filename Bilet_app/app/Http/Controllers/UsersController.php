@@ -14,15 +14,15 @@ class UsersController extends Controller
         $users_first_name = $request->input('kayitFirst');
         $users_last_name = $request->input('kayitLast');
         $users_email = $request->input('kayitEmail');
-        $users_password = $request->input('kayitPass');        
+        $users_password = bcrypt($request->input('kayitPass'));
 
         // Kullanıcıyı veritabanına kaydedin
-        $user = new Users();
-        $user->users_first_name = $users_first_name;
-        $user->users_last_name = $users_last_name;
-        $user->users_email = $users_email;
-        $user->users_password = bcrypt($users_password);
-        $user->save();
+        Users::create([
+            'users_first_name' => $users_first_name,
+            'users_last_name' => $users_last_name,
+            'users_email' => $users_email,
+            'users_password' => $users_password
+        ]);
 
         // Başarılı kayıt mesajını döndürün veya istediğiniz işlemi yapın
         return "veri kaydedildi";
