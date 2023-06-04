@@ -49,33 +49,34 @@ class UsersController extends Controller
             }
         }
     }
-    public function login(Request $request)
-    {
-        $email = $request->input('girisEmail');
-        $password = $request->input('girisPass');
-        $user = DB::table('users')->where('users_email', $email)->first();
-        if ($user && Hash::check($password, $user->users_password)) {
-            if($user->users_email == "admin@admin.com" && Hash::check($password, $user->users_password)){
-                session_start();
-                $_SESSION['user'] = $user;
-                return redirect('/admin/panel')->with(['user' => $user]);
-            }else{
-                session_start();
-                $_SESSION['user'] = $user;
-                return redirect('/admin/panel')->with(['user' => $user]);
-            }
-        } else {
-            // kullanıcı girişi başarısız
-            return "olmadı";
-        }
-    }
-
-    public function logout(Request $request)
+        public function login(Request $request)
         {
-            session_start();
-            $_SESSION = []; // Tüm oturum verilerini boşalt
-            session_destroy(); // Oturumu sonlandır
+            $email = $request->input('girisEmail');
+            $password = $request->input('girisPass');
+            $user = DB::table('users')->where('users_email', $email)->first();
 
-            return redirect('/home');
+            if ($user && Hash::check($password, $user->users_password)) {
+                if ($user->users_email == "admin@admin.com") {
+                    // Admin kullanıcısı giriş yaptı, oturumu başlat
+                    session(['admin' => $user]);
+                    return redirect('/admin/panel')->with(['user' => $user]);
+                } else {
+                    // Normal kullanıcı giriş yaptı, oturumu başlat
+                    session(['admin' => $user]);
+                    return redirect('/admin/panel')->with(['user' => $user]);
+                }
+            } else {
+                // Kullanıcı girişi başarısız
+                return "olmadı";
+            }
+        }
+
+        public function logout(Request $request)
+        {
+            // Oturumu sonlandır
+                session()->forget('admin');
+                session()->forget('user');
+
+                return redirect('/home');
         }
 }

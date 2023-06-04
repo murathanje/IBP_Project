@@ -56,5 +56,25 @@ Route::get('/account', [AccountController::class, 'index'])->name('account');
 
 Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
 
+Route::get('/admin/table', [AdminController::class, 'table'])->name('admin.table');
+
+Route::get('/admin/create/user', [AdminController::class, 'createUser'])->name('admin.create.user');
+Route::post('/admin/create/user/check', [AdminController::class, 'createUserCheck'])->name('admin.create.user.check');
+
+Route::get('/admin/create/trip', [AdminController::class, 'createTrip'])->name('admin.create.trip');
+Route::get('/admin/create/trip/check', [AdminController::class, 'createTripCheck'])->name('admin.create.trip.check');
+
+Route::get('/admin/edit/user', [AdminController::class, 'editUser'])->name('admin.edit.user');
+Route::get('/admin/edit/user/check', [AdminController::class, 'editUserCheck'])->name('admin.edit.user.check');
+
+Route::get('/admin/edit/trip', [AdminController::class, 'editTrip'])->name('admin.edit.trip');
+Route::get('/admin/edit/trip/check', [AdminController::class, 'editTripCheck'])->name('admin.edit.trip.check');
+
+Route::get('/admin/delete/user', [AdminController::class, 'deleteUser'])->name('admin.delete.user');
+Route::get('/admin/delete/user/check', [AdminController::class, 'deleteUserCheck'])->name('admin.delete.user.check');
+
+Route::get('/admin/delete/trip', [AdminController::class, 'deleteTrip'])->name('admin.delete.trip');
+Route::get('/admin/delete/trip/check', [AdminController::class, 'deleteTripCheck'])->name('admin.delete.trip.check');
+
 
 

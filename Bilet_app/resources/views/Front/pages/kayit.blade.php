@@ -44,7 +44,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input name="kayitPass" type="password" id="kayitPass1" class="form-control"/>
+                      <input name="kayitPass" type="password" id="kayitPass1" class="form-control"  minlength="8"/>
                       <label class="form-label" for="form3Example4c">Password</label>
                     </div>
                   </div>
