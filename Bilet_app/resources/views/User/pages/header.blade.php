@@ -38,13 +38,13 @@
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
-              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#destinations"><span class="nav-link-icon text-800 me-1 fas fa-map-marker-alt"></span><span class="nav-link-text"> </span></a></li>
-              <li class="nav-item px-2"><a class="nav-link" href="#flights"> <span class="nav-link-icon text-800 me-1 fas fa-plane"></span><span class="nav-link-text"></span></a></li>
-              <li class="nav-item px-2"><a class="nav-link" href="#hotels"> <span class="nav-link-icon text-800 me-1 fas fa-hotel"></span><span class="nav-link-text"></span></a></li>
-              <li class="nav-item px-2"><a class="nav-link" href="#activities"><span class="nav-link-icon text-800 me-1 fas fa-bolt"></span><span class="nav-link-text"></span></a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="{{ asset('account/pane/myaccount') }}"><span class="nav-link-icon text-800 me-1 fas fa-map-marker-alt"></span><span class="nav-link-text">My Account</span></a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{{ asset('account/pane/mytickets') }}"> <span class="nav-link-icon text-800 me-1 fas fa-plane"></span><span class="nav-link-text">My Tickets</span></a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{{ asset('account/pane/buyticket') }}"><span class="nav-link-icon text-800 me-1 fas fa-hotel"></span><span class="nav-link-text">Buy Ticket</span></a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{{ asset('account/pane/message') }}"><span class="nav-link-icon text-800 me-1 fas fa-bolt"></span><span class="nav-link-text">Messages</span></a></li>
             </ul>
-              <a href="{{ route('giris') }}" class="btn text-800 order-1 order-lg-0 me-2" type="submit">Sign In</a>
-              <a href="{{ route('kayit') }}" class="btn btn-voyage-outline order-0" type="submit"><span class="text-primary">Sign Up</span></a>
+              <span  class="btn text-4000 order-1 order-lg-0 me-2">{{$users->users_first_name}}</span>
+              <a href="{{ asset('logout/user') }}" class="btn btn-voyage-outline order-0" type="submit"><span class="text-primary">Logout</span></a>
           </div>
         </div>
       </nav>

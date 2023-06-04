@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AccountController;
 
 
 /*
@@ -52,9 +53,9 @@ Route::post('/kayitCheck', [UsersController::class, 'create'])->name('kayitCheck
 Route::get('/admin/panel', [AdminController::class, 'index'])->name('admin.panel');
 
 
-Route::get('/account', [AccountController::class, 'index'])->name('account');
 
-Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+Route::get('/logout/admin', [UsersController::class, 'logoutAdmin'])->name('logout.admin');
+Route::get('/logout/user', [UsersController::class, 'logoutUser'])->name('logout.user');
 
 Route::get('/admin/table', [AdminController::class, 'table'])->name('admin.table');
 
@@ -120,5 +121,13 @@ Route::post('/admin/delete/routes/check', [AdminController::class, 'deleteRouteC
 
 Route::get('/admin/delete/tickets', [AdminController::class, 'deleteTicket'])->name('admin.delete.tickets');
 Route::post('/admin/delete/ticket/check', [AdminController::class, 'deleteTicketCheck'])->name('admin.delete.tickets.check');
+
+Route::get('/account/panel', [AccountController::class, 'index'])->name('admin.account');
+
+Route::get('/account/panel/buyticket', [AccountController::class, 'index'])->name('account.panel.buyticket');
+Route::get('/account/panel/mytickets', [AccountController::class, 'mytickets'])->name('account.panel.mytickets');
+Route::get('/account/panel/myaccount', [AccountController::class, 'myaccount'])->name('account.panel.myaccount');
+Route::get('/account/panel/message', [AccountController::class, 'message'])->name('admin.acaccount.panel.message');
+
 
 

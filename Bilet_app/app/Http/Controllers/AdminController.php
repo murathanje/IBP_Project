@@ -27,6 +27,7 @@ class AdminController extends Controller
                 return redirect('/home');
             }
             
+            
             $ticketCount = DB::table('tickets')->count();
             $userCount = DB::table('users')->count();
             $totalTicketPrice = DB::table('tickets')->sum('ticket_price');
@@ -243,7 +244,7 @@ public function createUserCheck(Request $request)
     $firstName = $request->input('firstName');
     $lastName = $request->input('lastName');
     $email = $request->input('email');
-    $password = $request->input('password');
+    $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
 
     $newUser = new Users();
     $newUser->users_first_name = $firstName;

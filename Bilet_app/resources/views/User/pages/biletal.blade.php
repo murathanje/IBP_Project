@@ -1,7 +1,7 @@
         <!-- Page Content-->
-@extends('Front.pages.index')
-@section('title','Anasayfa')
-@section('content')
+@extends('User.pages.index')
+@section('title','Buy Ticket')
+@section('biletal')
                 <!-- Page Features-->
       <section class="mt-6 py-0">
         <div class="bg-holder w-50 bg-right d-none d-lg-block" style="background-image:url({{ asset('assets') }}/img/gallery/hero-section-1.png);">
@@ -14,9 +14,6 @@
               <h1 class="display-3 text-1000 fw-normal">Let’s make a tour</h1>
               <h1 class="display-3 text-primary fw-bold">Discover the beauty</h1>
               <div class="pt-5">
-                              <a href="{{ route('giris') }}" class="btn text-800 order-1 order-lg-0 me-2" type="submit">Sign In</a>
-              <a href="{{ route('kayit') }}" class="btn btn-voyage-outline order-0" type="submit"><span class="text-primary">Sign Up</span></a>
-
                 <nav>
                   <div class="nav nav-tabs voyage-tabs" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-map-marker-alt"></i></button>
