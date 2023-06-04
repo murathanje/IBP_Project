@@ -11,7 +11,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Users</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $userCount }}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $user->users_first_name }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -28,8 +28,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Ticket Count</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">12342</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

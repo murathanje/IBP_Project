@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     public function index(){
-        // $user = session('user');
-        $userCount = DB::table('users')->count();
-        return view('Back.pages.dashboard', compact('userCount'));    
+        session_start();
+        $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
+        return view('Back.pages.dashboard', compact('user'));    
     }
 }

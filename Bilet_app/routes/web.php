@@ -44,18 +44,17 @@ Route::get('/about', function () {
     return view('Front/pages/about');
 })->name('about');
 
-Route::get('/account', function () {
-    return view('Front/pages/account');
-})->name('account');
 
 Route::post('/loginCheck', [UsersController::class, 'login'])->name('loginCheck');
 Route::post('/kayitCheck', [UsersController::class, 'create'])->name('kayitCheck');
 
 // Back
-Route::get('/admin/panel', function () {
-    $user = session('user');
-    $userCount = session('userCount');
+Route::get('/admin/panel', [AdminController::class, 'index'])->name('admin.panel');
 
-    return view('Back.pages.dashboard', compact('user', 'userCount'));
-})->name('admin.panel');
+
+Route::get('/account', [AccountController::class, 'index'])->name('account');
+
+Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
+
+
 
