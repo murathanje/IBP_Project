@@ -1,27 +1,24 @@
 @extends('back.pages.master')
-@section('title','Create Trip')
+@section('title', 'Create Trip')
 @section('createtrip')
-<form method="POST" action="{{ asset('admin/create/user/check') }}">
+<form method="POST" action="{{ asset('admin/create/trip/check') }}">
     @csrf
-  <div class="mb-3">
-    <label for="firstName" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
-  </div>
-  <div class="mb-3">
-    <label for="lastName" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">E-mail</label>
-    <input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="E-mail" required>
-    <div class="invalid-feedback">Geçerli bir e-posta adresi giriniz.</div>
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" minlength="8" placeholder="Password" required>
-    <div class="invalid-feedback">The password must be at least 8 characters long.</div>
-  </div>
-  <button type="submit" class="btn btn-primary">Create</button>
+    <div class="mb-3">
+        <label for="busID" class="form-label">Bus ID</label>
+        <input type="number" class="form-control" id="busID" name="busID" placeholder="Bus ID" value="">
+    </div>
+    <div class="mb-3">
+        <label for="routeID" class="form-label">Route ID</label>
+        <input type="number" class="form-control" id="routeID" name="routeID" placeholder="Route ID" value="">
+    </div>
+    <div class="mb-3">
+        <label for="tripDate" class="form-label">Trip Date</label>
+        <input type="date" class="form-control" id="tripDate" name="tripDate" placeholder="Trip Date" value="">
+    </div>
+    <div class="mb-3">
+        <label for="tripTime" class="form-label">Trip Time</label>
+        <input type="time" class="form-control" id="tripTime" name="tripTime" placeholder="Trip Time" value="">
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
 </form>
-
 @endsection

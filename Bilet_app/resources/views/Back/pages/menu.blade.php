@@ -42,18 +42,35 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Options:</h6>
-                        <a class="collapse-item" href="{{ asset('admin/create/user') }}">Crate User</a>
-                        <a class="collapse-item" href="{{ asset('admin/create/trip') }}">Crate Trip</a>
-                        <a class="collapse-item" href="{{ asset('admin/edit/user') }}">Edit User</a>
+                        <h6 class="collapse-header">Create:</h6>
+                        <a class="collapse-item" href="{{ asset('admin/create/user') }}">Create User</a>
+                        <a class="collapse-item" href="{{ asset('admin/create/trip') }}">Create Trip</a>
+                        <a class="collapse-item" href="{{ asset('admin/create/bus') }}">Create Bus</a>
+                        <a class="collapse-item" href="{{ asset('admin/create/station') }}">Create Station</a>
+                        <a class="collapse-item" href="{{ asset('admin/create/company') }}">Create Company</a>
+                        <a class="collapse-item" href="{{ asset('admin/create/ticket') }}">Create Ticket</a>
+                        <a class="collapse-item" href="{{ asset('admin/create/routes') }}">Create Route</a>
                         <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Edit:</h6>
+                        <a class="collapse-item" href="{{ asset('admin/edit/user') }}">Edit User</a>
                         <a class="collapse-item" href="{{ asset('admin/edit/trip') }}">Edit Trip</a>
-                        <a class="collapse-item" href="{{ asset('admin/delete/trip') }}">Delete User</a>
-                        <a class="collapse-item" href="{{ asset('back') }}/blank.html">Delete Trip</a>
+                        <a class="collapse-item" href="{{ asset('admin/edit/bus') }}">Edit Bus</a>
+                        <a class="collapse-item" href="{{ asset('admin/edit/station') }}">Edit Station</a>
+                        <a class="collapse-item" href="{{ asset('admin/edit/company') }}">Edit Company</a>
+                        <a class="collapse-item" href="{{ asset('admin/edit/routes') }}">Edit Route</a>
+                        <a class="collapse-item" href="{{ asset('admin/edit/ticket') }}">Edit Ticket</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Delete:</h6>
+                        <a class="collapse-item" href="{{ asset('admin/delete/user') }}">Delete User</a>
+                        <a class="collapse-item" href="{{ asset('admin/delete/trip') }}">Delete Trip</a>
+                        <a class="collapse-item" href="{{ asset('admin/delete/bus') }}">Delete Bus</a>
+                        <a class="collapse-item" href="{{ asset('admin/delete/station') }}">Delete Station</a>
+                        <a class="collapse-item" href="{{ asset('admin/delete/company') }}">Delete Company</a>
+                        <a class="collapse-item" href="{{ asset('admin/delete/routes') }}">Delete Route</a>
+                        <a class="collapse-item" href="{{ asset('admin/delete/tickets') }}">Delete Ticket</a>
                     </div>
                 </div>
             </li>
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ asset('back') }}/charts.html">
@@ -147,7 +164,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}">
+                                <a class="dropdown-item" href="{{ asset('logout') }}">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
