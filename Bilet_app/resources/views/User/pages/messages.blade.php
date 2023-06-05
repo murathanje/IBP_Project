@@ -13,7 +13,7 @@
                     </div>
 
                     <div id="messageList" style="display:none; overflow-y: scroll; max-height: 500px;">
-                        @foreach ($messages->where('admin_id', 1)->sortBy('created_at') as $message)
+                        @foreach ($messages->where('user_id', $users->id)->where('admin_id', 1)->sortBy('created_at') as $message)
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Admin</h5>
@@ -28,10 +28,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div id="messageList1" style="display:none; overflow-y: scroll; max-height: 500px;">
-                                    @foreach ($messages->where('admin_id', 1)->sortBy('created_at') as $message)
+                        @foreach ($messages->where('user_id', $users->id)->where('admin_id', 0)->sortBy('created_at') as $message)
                                         <div class="card mb-3">
                                             <div class="card-body">
-                                                <h5 class="card-title">Admin</h5>
+                                                <h5 class="card-title">Me</h5>
                                                 <p class="card-text">{{ $message->content }}</p>
                                                 <p class="card-text">Date: {{ $message->created_at }}</p>
                                             </div>

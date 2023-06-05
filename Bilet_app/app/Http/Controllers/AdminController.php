@@ -314,15 +314,23 @@ public function deleteUserCheck(Request $request)
 
     if ($user) {
         try {
+            // Check if there are any messages associated with the user
+            $messages = Message::where('user_id', $user->id)->get();
+            if ($messages->count() > 0) {
+                // Delete messages associated with the user
+                Message::where('user_id', $user->id)->delete();
+            }
+
+            // Delete the user
             $user->delete();
-            return "oldu";
-            exit;
+
+            return "Success";
         } catch (Exception $e) {
             echo "Error while trying to delete user from the database.";
             die($e->getMessage());
         }
     } else {
-        return "Kullanıcı bulunamadı";
+        return "User not found";
     }
 }
 
