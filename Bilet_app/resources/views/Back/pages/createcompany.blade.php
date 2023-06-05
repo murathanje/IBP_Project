@@ -10,6 +10,9 @@
     <div class="mb-3">
         <label for="companyLocation" class="form-label">Company Address</label>
         <input type="text" class="form-control" id="companyName" name="companyAddress" placeholder="Company Address">
+    <div class="mb-3">
+        <label for="companyUrl" class="form-label">Company Logo</label>
+        <input type="text" class="form-control" id="companyUrl" name="companyUrl" placeholder="Company Logo Url">
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>

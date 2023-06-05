@@ -1,7 +1,7 @@
 @extends('user.pages.index')
 @section('title', 'My Tickets')
 @section('mytickets')
-<div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
+<div class="d-flex justify-content-center align-items-center" style="height: 120vh;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -15,10 +15,12 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Route Name</th> <!-- route_name eklendi -->
-                                            <th>Bus Capacity</th> <!-- bus_capacity eklendi -->
+                                            <th>Company</th>
+                                            <th>Route Name</th>
+                                            <th>Seat Number</th>
+                                            <th>Bus Capacity</th>
                                             <th>Ticket Price</th>
-                                            <th>Route Distance</th> <!-- route_distance eklendi -->
+                                            <th>Route Distance</th>
                                             <th>Trip Date</th>
                                             <th>Trip Time</th>
                                             <th>Actions</th>
@@ -26,17 +28,21 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($tickets as $ticket)
-                                                <tr>
-                                                    <td>{{ $ticket->trip->route->route_name }}</td> 
-                                                    <td>{{ $ticket->trip->bus->bus_capacity }}</td> 
-                                                    <td>{{ $ticket->ticket_price }}</td>
-                                                    <td>{{ $ticket->trip->route->route_distance }}</td>
-                                                    <td>{{ $ticket->trip->trip_date }}</td>
-                                                    <td>{{ $ticket->trip->trip_time }}</td>
-                                                    <td>
-                                                        <button type="submit" class="btn btn-danger" name="ticket_id" value="{{ $ticket->id }}">Delete</button>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="{{ $ticket->trip->bus->company->logo_url }}" alt="Logo" style="width: 50px; height: 50px;">
+                                                </td>
+                                                <td>{{ $ticket->trip->route->route_name }}</td>
+                                                <td>{{ $ticket->seat_number }}</td>
+                                                <td>{{ $ticket->trip->bus->bus_capacity }}</td>
+                                                <td>{{ $ticket->ticket_price }}</td>
+                                                <td>{{ $ticket->trip->route->route_distance }}</td>
+                                                <td>{{ $ticket->trip->trip_date }}</td>
+                                                <td>{{ $ticket->trip->trip_time }}</td>
+                                                <td>
+                                                    <button type="submit" class="btn btn-danger" name="ticket_id" value="{{ $ticket->id }}">Delete</button>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

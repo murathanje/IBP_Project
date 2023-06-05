@@ -15,6 +15,11 @@
         <label for="companyAddress" class="form-label">Company Address</label>
         <input type="text" class="form-control" id="companyAddress" name="companyAddress" placeholder="Company Address" value="">
     </div>
+        <div class="mb-3">
+        <label for="companyUrl" class="form-label">Company Logo</label>
+        <input type="text" class="form-control" id="companyUrl" name="companyUrl" placeholder="Company Logo Url">
+    </div>
+
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 @endsection

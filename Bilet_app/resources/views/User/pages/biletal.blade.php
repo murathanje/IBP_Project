@@ -1,7 +1,7 @@
 @extends('user.pages.index')
 @section('title','Buy Ticket')
 @section('biletal')
-    <section class="mt-6 py-0">
+    <section class="mt-6 py-0" style="height: 100vh;">
         <div class="bg-holder w-50 bg-right d-none d-lg-block" style="background-image:url({{ asset('assets') }}/img/gallery/hero-section-1.png);">
         </div>
         <div class="container">

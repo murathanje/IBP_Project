@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('trips_id'); // trips tablosuna bağlanan foreign key
             $table->unsignedInteger('ticket_price');
+            $table->unsignedInteger('seat_number');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

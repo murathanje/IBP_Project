@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('buses', function (Blueprint $table) {
+        Schema::create('message', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('bus_number');
-            $table->unsignedInteger('bus_capacity');
-            $table->unsignedBigInteger('company_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('admin_id');
+            $table->string('content');
             $table->timestamps();
 
-            $table->foreign('company_id')->references('id')->on('company');});
+            $table->foreign('user_id')->references('id')->on('users');
+
+        });
     }
 
     /**
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('buses');
+        Schema::dropIfExists('message');
     }
 };

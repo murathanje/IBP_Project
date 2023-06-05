@@ -15,6 +15,10 @@
         <label for="tripID" class="form-label">Trip ID</label>
         <input type="number" class="form-control" id="tripID" name="tripID" placeholder="Trip ID">
     </div>
+    <div class="mb-3">
+        <label for="seat_number" class="form-label">Seat Number</label>
+        <input type="number" class="form-control" id="seat_number" name="seat_number" placeholder="Seat Number">
+    </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
 @endsection

@@ -11,6 +11,10 @@
         <label for="busCapacity" class="form-label">Bus Capacity</label>
         <input type="number" class="form-control" id="busCapacity" name="busCapacity" placeholder="Bus Capacity">
     </div>
+    <div class="mb-3">
+        <label for="companyID" class="form-label">Company ID</label>
+        <input type="number" class="form-control" id="companyID" name="companyID" placeholder="Company ID">
+    </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
 @endsection

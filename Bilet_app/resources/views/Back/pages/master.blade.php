@@ -23,4 +23,5 @@
 @yield('deletestation')
 @yield('editticket')
 @yield('deleteticket')
+@yield('backmessage')
 @include('back.pages.footer')

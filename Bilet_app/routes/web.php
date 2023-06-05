@@ -59,6 +59,12 @@ Route::get('/logout/user', [UsersController::class, 'logoutUser'])->name('logout
 
 Route::get('/admin/table', [AdminController::class, 'table'])->name('admin.table');
 
+Route::get('/admin/message', [AdminController::class, 'message'])->name('admin.message');
+Route::post('/admin/message/send', [AdminController::class, 'messageSend'])->name('admin.message.send');
+
+Route::get('/account/message', [AccountController::class, 'message'])->name('account.message');
+Route::post('/account/message/send', [AccountController::class, 'messageSend'])->name('account.message.send');
+
 Route::get('/admin/create/user', [AdminController::class, 'createUser'])->name('admin.create.user');
 Route::post('/admin/create/user/check', [AdminController::class, 'createUserCheck'])->name('admin.create.user.check');
 
@@ -124,7 +130,7 @@ Route::post('/admin/delete/ticket/check', [AdminController::class, 'deleteTicket
 
 Route::get('/account/panel', [AccountController::class, 'index'])->name('admin.account');
 
-Route::get('/account/panel/biletal', [AccountController::class, 'index'])->name('account.panel.buyticket');
+Route::get('/account/panel/biletal', [AccountController::class, 'index'])->name('account.panel.biletal');
 Route::get('/account/panel/mytickets', [AccountController::class, 'mytickets'])->name('account.panel.mytickets');
 Route::get('/account/panel/myaccount', [AccountController::class, 'myaccount'])->name('account.panel.myaccount');
 Route::post('/account/panel/myaccount/check', [AccountController::class, 'myaccountCheck'])->name('account.panel.myaccount.check');

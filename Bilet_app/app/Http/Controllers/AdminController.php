@@ -12,6 +12,7 @@ use App\Models\Routes;
 use App\Models\Station;
 use App\Models\Tickets;
 use App\Models\Trips;
+use App\Models\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -42,7 +43,13 @@ class AdminController extends Controller
             
 
         $userData = DB::table('users')->get();
-        return view('Back.pages.table', compact('userData'));    
+        $ticketData = DB::table('tickets')->get();
+        $tripsData = DB::table('trips')->get();
+        $stationData = DB::table('station')->get();
+        $busesData = DB::table('buses')->get();
+        $companyData = DB::table('company')->get();
+        $routesData = DB::table('routes')->get();
+        return view('Back.pages.table', compact('userData','routesData','companyData','busesData','stationData','tripsData','ticketData'));    
 
     }
 
@@ -429,10 +436,12 @@ public function deleteTripCheck(Request $request)
 
         $companyName = $request->input('companyName');
         $companyAddress = $request->input('companyAddress');
+        $companyUrl = $request->input('companyUrl');
 
         $newCompany = new Company();
         $newCompany->company_name = $companyName;
         $newCompany->company_address = $companyAddress;
+        $newCompany->logo_url = $companyUrl;
 
         try {
             $newCompany->save();
@@ -453,12 +462,15 @@ public function deleteTripCheck(Request $request)
         $companyID = $request->input('companyID');
         $companyName = $request->input('companyName');
         $companyAddress = $request->input('companyAddress');
+        $companyUrl = $request->input('companyUrl');
+
 
         $company = Company::find($companyID);
 
         if ($company) {
             $company->company_name = $companyName;
             $company->company_address = $companyAddress;
+            $company->logo_url = $companyUrl;
 
             try {
                 $company->save();
@@ -473,30 +485,33 @@ public function deleteTripCheck(Request $request)
         }
     }
 
-    public function deleteCompanyCheck(Request $request)
-    {
-        if (!session()->has('admin')) {
-            return redirect('/home');
-        }
-
-        $companyID = $request->input('companyID');
-
-        $company = Company::find($companyID);
-
-        if ($company) {
-            try {
-                $company->delete();
-                return "oldu";
-                exit;
-            } catch (Exception $e) {
-                echo "Error while trying to delete company from the database.";
-                die($e->getMessage());
-            }
-        } else {
-            return "Şirket bulunamadı";
-        }
+public function deleteCompanyCheck(Request $request)
+{
+    if (!session()->has('admin')) {
+        return redirect('/home');
     }
-public function createBusCheck(Request $request)
+
+    $companyID = $request->input('companyID');
+
+    $company = Company::find($companyID);
+
+    if ($company) {
+        try {
+            // Delete related buses records
+            Buses::where('company_id', $companyID)->delete();
+
+            // Delete the company
+            $company->delete();
+
+            return "Success";
+        } catch (Exception $e) {
+            echo "Error while trying to delete company from the database.";
+            die($e->getMessage());
+        }
+    } else {
+        return "Company not found";
+    }
+}public function createBusCheck(Request $request)
 {
     if (!session()->has('admin')) {
         return redirect('/home');
@@ -504,15 +519,22 @@ public function createBusCheck(Request $request)
 
     $busNumber = $request->input('busNumber');
     $busCapacity = $request->input('busCapacity');
+    $companyID = $request->input('companyID');
+
+    // Check if the company_id exists in the company table
+    $company = Company::find($companyID);
+    if (!$company) {
+        return "Invalid company ID";
+    }
 
     $newBus = new Buses();
     $newBus->bus_number = $busNumber;
     $newBus->bus_capacity = $busCapacity;
+    $newBus->company_id = $companyID;
 
     try {
         $newBus->save();
-        return "oldu";
-        exit;
+        return "Success";
     } catch (Exception $e) {
         echo "Error while trying to save data to the database.";
         die($e->getMessage());
@@ -528,26 +550,32 @@ public function editBusCheck(Request $request)
     $busID = $request->input('busID');
     $busNumber = $request->input('busNumber');
     $busCapacity = $request->input('busCapacity');
+    $companyID = $request->input('companyID');
+
+    // Check if the company_id exists in the company table
+    $company = Company::find($companyID);
+    if (!$company) {
+        return "Invalid company ID";
+    }
 
     $bus = Buses::find($busID);
 
     if ($bus) {
         $bus->bus_number = $busNumber;
         $bus->bus_capacity = $busCapacity;
+        $bus->company_id = $companyID;
 
         try {
             $bus->save();
-            return "oldu";
-            exit;
+            return "Success";
         } catch (Exception $e) {
             echo "Error while trying to save data to the database.";
             die($e->getMessage());
         }
     } else {
-        return "Geçersiz otobüs ID";
+        return "Invalid bus ID";
     }
 }
-
 public function deleteBusCheck(Request $request)
 {
     if (!session()->has('admin')) {
@@ -745,25 +773,35 @@ public function deleteStationCheck(Request $request)
 public function createTicketCheck(Request $request)
 {
     if (!session()->has('admin')) {
-    return redirect('/home');
+        return redirect('/home');
     }
+
     $userID = $request->input('userID');
     $tripID = $request->input('tripID');
+    $seatNumber = $request->input('seat_number');
     $ticketPrice = $request->input('ticketPrice');
 
     $user = Users::find($userID);
+    $trip = Trips::find($tripID);
 
-    if ($user) {
-        $ticket = new Tickets();
-        $ticket->user_id = $userID;
-        $ticket->trips_id = $tripID;
-        $ticket->ticket_price = $ticketPrice;
+    if ($user && $trip) {
+        $bus = $trip->bus;
+        
+        if ($bus && $bus->bus_capacity >= $seatNumber) {
+            $ticket = new Tickets();
+            $ticket->user_id = $userID;
+            $ticket->trips_id = $tripID;
+            $ticket->ticket_price = $ticketPrice;
+            $ticket->seat_number = $seatNumber;
 
-        try {
-            $ticket->save();
-            return "Ticket created successfully.";
-        } catch (Exception $e) {
-            return "Failed to create ticket.";
+            try {
+                $ticket->save();
+                return "Ticket created successfully.";
+            } catch (Exception $e) {
+                return "Failed to create ticket.";
+            }
+        } else {
+            return "Invalid seat number or bus capacity exceeded.";
         }
     } else {
         return "Invalid user ID or trip ID.";
@@ -778,6 +816,7 @@ public function editTicketCheck(Request $request)
     $ticketID = $request->input('ticketID');
     $userID = $request->input('userID');
     $tripID = $request->input('tripID');
+    $seatNumber = $request->input('seatNumber');
     $ticketPrice = $request->input('ticketPrice');
 
     $ticket = Tickets::find($ticketID);
@@ -787,15 +826,22 @@ public function editTicketCheck(Request $request)
         $trip = Trips::find($tripID);
 
         if ($user && $trip) {
-            $ticket->user_id = $userID;
-            $ticket->trips_id = $tripID;
-            $ticket->ticket_price = $ticketPrice;
+            $bus = $trip->bus;
 
-            try {
-                $ticket->save();
-                return "Ticket updated successfully.";
-            } catch (Exception $e) {
-                return "Failed to update ticket.";
+            if ($bus && $bus->bus_capacity > $seatNumber) {
+                $ticket->user_id = $userID;
+                $ticket->trips_id = $tripID;
+                $ticket->ticket_price = $ticketPrice;
+                $ticket->seat_number = $seatNumber;
+
+                try {
+                    $ticket->save();
+                    return "Ticket updated successfully.";
+                } catch (Exception $e) {
+                    return "Failed to update ticket.";
+                }
+            } else {
+                return "Invalid seat number or bus capacity exceeded.";
             }
         } else {
             return "Invalid user ID or trip ID.";
@@ -827,8 +873,49 @@ public function deleteTicketCheck(Request $request)
     } else {
         return "Bilet bulunamadı";
     }
+
 }
 
+public function message()
+{
+    // Admin oturumu açılmış mı kontrol edin
+    if (!session()->has('admin')) {
+        // Admin oturumu açılmamışsa anasayfaya yönlendirin veya hata mesajı gösterin
+        return redirect('/home');
+    }
+    
+    $messages = DB::table('message')
+        ->join('users', 'message.user_id', '=', 'users.id')
+        ->select('message.*', 'users.users_first_name')
+        ->get();
+
+    return view('Back.pages.message', compact('messages'));
+}
+
+public function messageSend(Request $request)
+{
+    if (!session()->has('admin')) {
+        return redirect('/home');
+    }
+
+    $userId = $request->input('user_id');
+    $content = $request->input('content');
+
+    $user = Users::find($userId);
+
+    if($user){
+        $message = new Message();
+        $message->user_id = $userId;
+        $message->content = $content;
+        $message->admin_id = 1;
+        $message->save();
+
+        return "Mesaj gönderildi";
+    }else{
+        return "Kullanıcı bulunamadı";
+    }
+
+}
 
 
 

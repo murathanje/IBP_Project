@@ -10,7 +10,7 @@ class Tickets extends Model
     use HasFactory;
 
     protected $table = 'tickets';
-    protected $fillable = ['user_id', 'trips_id', 'ticket_price'];
+    protected $fillable = ['user_id', 'trips_id', 'ticket_price','seat_number'];
 
     public function trip()
     {

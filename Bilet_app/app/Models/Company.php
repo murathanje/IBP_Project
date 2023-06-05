@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     protected $table = 'company';
-    protected $fillable = ['company_name','company_address'];
+    protected $fillable = ['company_name','company_address',"logo_url"];
 }
