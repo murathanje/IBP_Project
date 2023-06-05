@@ -127,6 +127,8 @@ Route::get('/account/panel', [AccountController::class, 'index'])->name('admin.a
 Route::get('/account/panel/buyticket', [AccountController::class, 'index'])->name('account.panel.buyticket');
 Route::get('/account/panel/mytickets', [AccountController::class, 'mytickets'])->name('account.panel.mytickets');
 Route::get('/account/panel/myaccount', [AccountController::class, 'myaccount'])->name('account.panel.myaccount');
+Route::post('/account/panel/myaccount/check', [AccountController::class, 'myaccountCheck'])->name('account.panel.myaccount.check');
+Route::post('/account/panel/myaccount/delete', [AccountController::class, 'deleteAccount'])->name('account.panel.myaccount.delete');
 Route::get('/account/panel/message', [AccountController::class, 'message'])->name('admin.acaccount.panel.message');
 
 

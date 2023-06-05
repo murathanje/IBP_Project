@@ -272,7 +272,7 @@ public function editUserCheck(Request $request)
     $firstName = $request->input('firstName');
     $lastName = $request->input('lastName');
     $email = $request->input('email');
-    $password = $request->input('password');
+    $password = password_hash($request->input('password'), PASSWORD_DEFAULT);
 
     $user = Users::find($userID);
 
