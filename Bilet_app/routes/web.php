@@ -124,12 +124,18 @@ Route::post('/admin/delete/ticket/check', [AdminController::class, 'deleteTicket
 
 Route::get('/account/panel', [AccountController::class, 'index'])->name('admin.account');
 
-Route::get('/account/panel/buyticket', [AccountController::class, 'index'])->name('account.panel.buyticket');
+Route::get('/account/panel/biletal', [AccountController::class, 'index'])->name('account.panel.buyticket');
 Route::get('/account/panel/mytickets', [AccountController::class, 'mytickets'])->name('account.panel.mytickets');
 Route::get('/account/panel/myaccount', [AccountController::class, 'myaccount'])->name('account.panel.myaccount');
 Route::post('/account/panel/myaccount/check', [AccountController::class, 'myaccountCheck'])->name('account.panel.myaccount.check');
 Route::post('/account/panel/myaccount/delete', [AccountController::class, 'deleteAccount'])->name('account.panel.myaccount.delete');
-Route::get('/account/panel/message', [AccountController::class, 'message'])->name('admin.acaccount.panel.message');
+Route::get('/account/panel/message', [AccountController::class, 'message'])->name('acaccount.panel.message');
+
+Route::post('/account/panel/findticket', [AccountController::class, 'findticket'])->name('acaccount.panel.findticket');
+
+Route::post('/account/panel/buyticket', [AccountController::class, 'buyticket'])->name('account.panel.buyticket');
+
+Route::post('/account/panel/cancelticket', [AccountController::class, 'cancelticket'])->name('account.panel.cancelticket');
 
 
 

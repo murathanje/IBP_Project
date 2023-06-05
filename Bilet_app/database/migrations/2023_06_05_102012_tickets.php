@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('trips_id'); // trips tablosuna bağlanan foreign key
             $table->unsignedInteger('ticket_price');
             $table->timestamps();
+
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('trips_id')->references('id')->on('trips'); // trips tablosuna referans
         });
     }
 

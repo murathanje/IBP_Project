@@ -17,6 +17,7 @@
     <meta name="theme-color" content="#ffffff">
     
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
@@ -41,7 +42,7 @@
             <ul class="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
               <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="{{ asset('account/panel/myaccount') }}"><span class="nav-link-icon text-800 me-1 fas fa-map-marker-alt"></span><span class="nav-link-text">My Account</span></a></li>
               <li class="nav-item px-2"><a class="nav-link" href="{{ asset('account/panel/mytickets') }}"> <span class="nav-link-icon text-800 me-1 fas fa-plane"></span><span class="nav-link-text">My Tickets</span></a></li>
-              <li class="nav-item px-2"><a class="nav-link" href="{{ asset('account/panel/buyticket') }}"><span class="nav-link-icon text-800 me-1 fas fa-hotel"></span><span class="nav-link-text">Buy Ticket</span></a></li>
+              <li class="nav-item px-2"><a class="nav-link" href="{{ asset('account/panel/biletal') }}"><span class="nav-link-icon text-800 me-1 fas fa-hotel"></span><span class="nav-link-text">Buy Ticket</span></a></li>
               <li class="nav-item px-2"><a class="nav-link" href="{{ asset('account/panel/message') }}"><span class="nav-link-icon text-800 me-1 fas fa-bolt"></span><span class="nav-link-text">Messages</span></a></li>
             </ul>
               <span  class="btn text-4000 order-1 order-lg-0 me-2">{{$users->users_first_name}}</span>

@@ -11,6 +11,9 @@
     <div class="mb-3">
         <label for="ticketPrice" class="form-label">Ticket Price</label>
         <input type="number" class="form-control" id="ticketPrice" name="ticketPrice" placeholder="Ticket Price">
+    <div class="mb-3">
+        <label for="tripID" class="form-label">Trip ID</label>
+        <input type="number" class="form-control" id="tripID" name="tripID" placeholder="Trip ID">
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>

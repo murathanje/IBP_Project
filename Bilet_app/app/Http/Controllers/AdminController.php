@@ -395,29 +395,32 @@ public function createTripCheck(Request $request)
         }
     }
 
-    public function deleteTripCheck(Request $request)
-    {
-        if (!session()->has('admin')) {
-            return redirect('/home');
-        }
-
-        $tripID = $request->input('tripID');
-
-        $trip = Trips::find($tripID);
-
-        if ($trip) {
-            try {
-                $trip->delete();
-                return "oldu";
-                exit;
-            } catch (Exception $e) {
-                echo "Error while trying to delete trip from the database.";
-                die($e->getMessage());
-            }
-        } else {
-            return "Sefer bulunamadı";
-        }
+public function deleteTripCheck(Request $request)
+{
+    if (!session()->has('admin')) {
+        return redirect('/home');
     }
+
+    $tripID = $request->input('tripID');
+
+    $trip = Trips::find($tripID);
+
+    if ($trip) {
+        try {
+            // İlgili biletlere ait kayıtları sil
+            $trip->tickets()->delete();
+
+            // Seferi sil
+            $trip->delete();
+
+            return "Sefer ve biletler başarıyla silindi.";
+        } catch (Exception $e) {
+            return "Veritabanından sefer ve biletleri silmeye çalışırken bir hata oluştu: " . $e->getMessage();
+        }
+    } else {
+        return "Sefer bulunamadı";
+    }
+}
     public function createCompanyCheck(Request $request)
     {
         if (!session()->has('admin')) {
@@ -745,6 +748,7 @@ public function createTicketCheck(Request $request)
     return redirect('/home');
     }
     $userID = $request->input('userID');
+    $tripID = $request->input('tripID');
     $ticketPrice = $request->input('ticketPrice');
 
     $user = Users::find($userID);
@@ -752,6 +756,7 @@ public function createTicketCheck(Request $request)
     if ($user) {
         $ticket = new Tickets();
         $ticket->user_id = $userID;
+        $ticket->trips_id = $tripID;
         $ticket->ticket_price = $ticketPrice;
 
         try {
@@ -770,29 +775,33 @@ public function editTicketCheck(Request $request)
         return redirect('/home');
     }
 
-
     $ticketID = $request->input('ticketID');
     $userID = $request->input('userID');
+    $tripID = $request->input('tripID');
+    $ticketPrice = $request->input('ticketPrice');
 
     $ticket = Tickets::find($ticketID);
-    $user = Users::find($userID);
 
     if ($ticket) {
-        
-        if($user){
+        $user = Users::find($userID);
+        $trip = Trips::find($tripID);
+
+        if ($user && $trip) {
             $ticket->user_id = $userID;
-        }else{
-            return "Geçersiz User ID";
-        }
-        try {
-            $ticket->save();
-            return "oldu";
-            exit;
-        } catch (Exception $e) {
-            return "Geçersiz bilet ID";
+            $ticket->trips_id = $tripID;
+            $ticket->ticket_price = $ticketPrice;
+
+            try {
+                $ticket->save();
+                return "Ticket updated successfully.";
+            } catch (Exception $e) {
+                return "Failed to update ticket.";
+            }
+        } else {
+            return "Invalid user ID or trip ID.";
         }
     } else {
-        return "Geçersiz bilet ID";
+        return "Invalid ticket ID.";
     }
 }
 

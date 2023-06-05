@@ -7,25 +7,36 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Models\Users;
 use App\Models\Tickets;
+use App\Models\Buses;
+use App\Models\Trips;
+use App\Models\Station;
 
 
 class AccountController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         if (!session()->has('users')) {
             return redirect('/home');
         }
 
         $users = session('users');
-        return view('User.pages.biletal', compact('users'));
+        $stations = Station::pluck('station_name');
+
+        return view('User.pages.biletal', compact('users', 'stations'));
     }
-    public function mytickets(){
+    public function mytickets()
+    {
         if (!session()->has('users')) {
             return redirect('/home');
         }
 
         $users = session('users');
-        return view('User.pages.mytickets', compact('users'));
+        $tickets = Tickets::with(['trip.bus', 'trip.route'])
+            ->where('user_id', $users->id)
+            ->get();
+
+        return view('User.pages.mytickets', compact('users', 'tickets'));
     }
     public function myaccount(){
         if (!session()->has('users')) {
@@ -42,7 +53,7 @@ class AccountController extends Controller
 
         $users = session('users');
 
-        return view('User.pages.message', compact('users'));
+        return view('User.pages.messages', compact('users'));
     }
 
 public function myaccountCheck(Request $request)
@@ -115,4 +126,67 @@ public function deleteAccount(Request $request)
         return "Geçersiz kullanıcı bilgileri";
     }
 }
+
+    public function findticket(Request $request)
+    {
+        $from = $request->input('from');
+        $where = $request->input('where');
+        $date = $request->input('date');
+        $routeName = $from . '-' . $where;
+
+        $trips = Trips::with(['route'])
+            ->whereHas('route', function ($query) use ($routeName) {
+                $query->where('route_name', $routeName);
+            })
+            ->where('trip_date', $date)
+            ->get();
+        $users = session('users');
+
+        return view('User.pages.findticket', compact('trips', 'users'));
+    }
+
+
+public function buyticket(Request $request)
+{
+    // Kullanıcının oturum açtığı kullanıcı idsini alın
+    $userId = session('users')->id;
+    $tripId = $request->input('trip_id');
+    
+    // Yeni bir bilet oluşturun ve değerleri atayın
+    $ticket = new Tickets();
+    $ticket->user_id = $userId;
+    $ticket->trips_id = $tripId;
+    $ticket->ticket_price = 100;
+    
+    // Bileti kaydedin
+    $ticket->save();
+    
+    // İşlem tamamlandıktan sonra gerekli yönlendirmeyi yapabilirsiniz
+    // Örneğin, kullanıcıyı bir teşekkür sayfasına yönlendirebilirsiniz
+    return redirect('/account/panel');
+}
+public function cancelticket(Request $request)
+{
+    if (!session()->has('users')) {
+        return redirect('/home');
+    }
+
+    $ticketID = $request->input('ticket_id');
+
+    $ticket = Tickets::find($ticketID);
+
+    if ($ticket) {
+        try {
+            $ticket->delete();
+            return "oldu";
+            exit;
+        } catch (Exception $e) {
+            echo "Error while trying to delete ticket from the database.";
+            die($e->getMessage());
+        }
+    } else {
+        return "Bilet bulunamadı";
+    }
+}
+
 }

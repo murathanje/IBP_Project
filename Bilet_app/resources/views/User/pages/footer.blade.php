@@ -61,6 +61,7 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('back') }}/js/demo/chart-area-demo.js"></script>
     <script src="{{ asset('back') }}/js/demo/chart-pie-demo.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
